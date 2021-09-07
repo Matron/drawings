@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Relief",
+    "hidden": false
+  },
+  {
+    "id": 2,
+    "name": "Political Map",
+    "hidden": false
+  },
+  {
+    "id": 3,
+    "name": "Cities",
+    "hidden": false
+  },
+  {
+    "id": 4,
+    "name": "Clovis",
+    "hidden": true,
+    "events": [
+      {
+        "id": 1,
+        "name": "Clovis hérite le royaume Franc",
+        "startDate": { "year": 481 },
+        "endDate": {}
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Theodoric",
+    "hidden": true
+  }
+]

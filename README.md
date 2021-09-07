@@ -1,3 +1,14 @@
+# Project 1 in React
+
+## POC 1
+
+* no map at first
+* component with list of rendered map objects
+* event is activated when clicked instead of activated by time machine current time
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

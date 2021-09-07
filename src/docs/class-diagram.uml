@@ -1,0 +1,12 @@
+@startuml
+interface       Map
+interface       Event
+class           StorageServive
+class           TimeMachine
+
+annotation      annotation
+circle          circle
+()              circle_short_form
+class           class
+enum            enum
+@enduml
