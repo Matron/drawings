@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "@emotion/styled";
 
-import { TimelinesContext } from "../App";
+import { TimelinesContext } from "../contexts/TimelinesContext";
 import TimelineControl from "./TimelineControl";
 
 const TimelinesWrapper = styled.div`
@@ -22,13 +22,17 @@ const TimelineEmtpy = styled.div`
 `;
 
 const TimelinesContainer = () => {
-  const { timelines } = useContext(TimelinesContext);
+  const { state, dispatch } = useContext(TimelinesContext);
+
+  const toggleTimelineHidden = (id: number) => {
+    dispatch({ type: "TOGGLE_TIMELINE_HIDDEN", payload: { id: id}})
+  }
 
   return (
     <TimelinesWrapper>
-      {timelines?.length ? (
-        timelines.map((timeline) => (
-          <TimelineControl timeline={timeline} key={timeline.id} />
+      {state.timelines?.length ? (
+        state.timelines.map((timeline) => (
+          <TimelineControl timeline={timeline} handleToggleTimelineHidden={toggleTimelineHidden} key={timeline.id} />
         ))
       ) : (
         <TimelineEmtpy>No timelines yet in this scenario</TimelineEmtpy>

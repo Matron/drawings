@@ -42,21 +42,17 @@ const TimelineToggle = styled.div`
 
 interface TimelinesProps {
   timeline: Timeline;
+  handleToggleTimelineHidden: (id: number) => void
 };
 
-const TimelineControl = ({timeline}: TimelinesProps) => {
+const TimelineControl = ({timeline, handleToggleTimelineHidden}: TimelinesProps) => {
 	const { name, events, hidden } = timeline;
-
-  const handleToggleHide = () => {
-    console.log('ckick on ', name);
-    
-  }
 
   return (
     <TimelineWrapper>
       <TimelineName>{name}</TimelineName>
       <TimelineEvents>{events?.length}</TimelineEvents>
-      <TimelineToggle onClick={ () => handleToggleHide() }>{hidden ? 'Show' : 'Hide'}</TimelineToggle>
+      <TimelineToggle onClick={ () => handleToggleTimelineHidden(timeline.id) }>{hidden ? 'Show' : 'Hide'}</TimelineToggle>
     </TimelineWrapper>
   );
 }
