@@ -16,14 +16,14 @@ function App() {
     fetch("http://localhost:3000/data.json")
       .then((resp) => resp.json())
       .then((data) => {
-        dispatch({ type: "SET_TIMELINES", payload: { timelines: data }})
+        dispatch({ type: "SET_TIMELINES", payload: { timelines: data } });
         console.log("got data: ", data);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <Main>
-        <TimelinesContainer />
+      <TimelinesContainer />
     </Main>
   );
 }

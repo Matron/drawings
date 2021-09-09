@@ -2,12 +2,15 @@
 
 ## POC 1
 
-* no map at first
-* component with list of rendered map objects
-* event is activated when clicked instead of activated by time machine current time
+- no map at first
+- component with list of rendered map objects
+- event is activated when clicked instead of activated by time machine current time
 
+## Scenarios
 
-
+- Merovingians
+- Arab-Israeli Wars
+- Between wars - more content -story telling oriented, not so many map events
 
 # Getting Started with Create React App
 

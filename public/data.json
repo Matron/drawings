@@ -16,14 +16,30 @@
   },
   {
     "id": 4,
-    "name": "Clovis",
+    "name": "Mérovingiens",
     "hidden": true,
     "events": [
       {
         "id": 1,
-        "name": "Clovis hérite le royaume Franc",
-        "startDate": { "year": 481 },
-        "endDate": {}
+        "name": "1",
+        "startDate": { "year": 466 },
+        "endDate": { "year": 511 },
+        "children": [
+          {
+            "id": 2,
+            "name": "2",
+            "startDate": { "year": 509 },
+            "endDate": { "year": 511 },
+            "children": []
+          },
+          {
+            "id": 3,
+            "name": "3",
+            "startDate": { "year": 481 },
+            "endDate": { "year": 509 },
+            "children": []
+          }
+        ]
       }
     ]
   },

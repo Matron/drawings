@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import React from "react";
 
-import Timeline from '../models/Timeline'
+import Timeline from "../models/Timeline";
+import EventControl from "./EventControl";
 
 const TimelineWrapper = styled.div`
   display: flex;
@@ -42,19 +42,27 @@ const TimelineToggle = styled.div`
 
 interface TimelinesProps {
   timeline: Timeline;
-  handleToggleTimelineHidden: (id: number) => void
-};
+  handleToggleTimelineHidden: (id: number) => void;
+}
 
-const TimelineControl = ({timeline, handleToggleTimelineHidden}: TimelinesProps) => {
-	const { name, events, hidden } = timeline;
+const TimelineControl = ({
+  timeline,
+  handleToggleTimelineHidden,
+}: TimelinesProps) => {
+  const { name, events, hidden } = timeline;
 
   return (
     <TimelineWrapper>
       <TimelineName>{name}</TimelineName>
-      <TimelineEvents>{events?.length}</TimelineEvents>
-      <TimelineToggle onClick={ () => handleToggleTimelineHidden(timeline.id) }>{hidden ? 'Show' : 'Hide'}</TimelineToggle>
+      <TimelineEvents>
+        {events &&
+          events.map((event) => <EventControl event={event} key={event.id} />)}
+      </TimelineEvents>
+      <TimelineToggle onClick={() => handleToggleTimelineHidden(timeline.id)}>
+        {hidden ? "Show" : "Hide"}
+      </TimelineToggle>
     </TimelineWrapper>
   );
-}
+};
 
 export default TimelineControl;
