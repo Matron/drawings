@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 
 import Event from "../models/Event";
 import { getElementWidth } from "../utils/DOMFunctions";
+import { GuiContext } from "../contexts/GuiContext";
 
 interface EventControlProps {
   event: Event;
@@ -17,6 +18,9 @@ function EventControl({
 }: EventControlProps) {
   const { name, children, endDate, startDate } = event;
 
+  const { guiState } = useContext(GuiContext);
+  const { screenScale } = guiState;
+
   const [elementWidth, setElementWidth] = useState("10px");
   const [elementHeight, setElementHeight] = useState("10px");
   const [elementPosX, setElementPosX] = useState(10);
@@ -28,9 +32,10 @@ function EventControl({
   }, [heightInPixels]);
 
   useEffect(() => {
-    setElementPosX(startDate.year - offset);
-    setElementWidth(endDate.year - startDate.year + "px"); // TODO: use scale multiplier based on screen width
-  }, [endDate.year, startDate.year, offset]);
+    const width = (endDate.year - startDate.year) * screenScale;
+    setElementPosX(startDate.year * screenScale - offset);
+    setElementWidth(width + "px");
+  }, [endDate.year, startDate.year, offset, screenScale]);
 
   return (
     <EventCard
@@ -51,7 +56,7 @@ function EventControl({
           <EventControl
             event={child}
             heightInPixels={heightInPixels - 10}
-            offset={elementPosX}
+            offset={elementPosX + offset}
             key={child.id}
           />
         ))}
@@ -75,6 +80,8 @@ const EventCard = styled.div`
   font-size: small;
   border: 1px solid;
   align-items: center;
+  padding: 0;
+  box-sizing: border-box;
 `;
 
 export default EventControl;

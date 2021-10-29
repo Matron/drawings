@@ -6,6 +6,11 @@
 - component with list of rendered map objects
 - event is activated when clicked instead of activated by time machine current time
 
+## Features
+
+- event card with context menu with options to move up, down, closer, farther , in order to arrange (and persist) the layout of the cards
+- global keyboard support, no functions that depend on active element, global keyboard mapping to features (scroll, zoom, offset)
+
 ## Scenarios
 
 - Merovingians

@@ -13,16 +13,15 @@ type TimelinesActions =
     }
   | {
       type: "SET_TIMELINES";
-      payload: { timelines: Timeline[]};
+      payload: { timelines: Timeline[] };
     };
 
 const reducer = (state: typeof initialState, action: TimelinesActions) => {
-
   switch (action.type) {
     case "SET_TIMELINES": {
       return {
-          ...state,
-          timelines: action.payload.timelines
+        ...state,
+        timelines: action.payload.timelines,
       };
     }
     case "TOGGLE_TIMELINE_HIDDEN": {
@@ -42,9 +41,9 @@ const reducer = (state: typeof initialState, action: TimelinesActions) => {
 };
 
 const TimelinesContext = createContext<{
-  state: typeof initialState;
-  dispatch: React.Dispatch<TimelinesActions>;
-}>({ state: initialState, dispatch: () => {} });
+  timelinesState: typeof initialState;
+  timelinesDispatch: React.Dispatch<TimelinesActions>;
+}>({ timelinesState: initialState, timelinesDispatch: () => {} });
 
 interface TimelinesContextProviderProps {
   children: React.ReactNode;
@@ -52,10 +51,10 @@ interface TimelinesContextProviderProps {
 const TimelinesContextProvider = ({
   children,
 }: TimelinesContextProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [timelinesState, timelinesDispatch] = useReducer(reducer, initialState);
 
   return (
-    <TimelinesContext.Provider value={{ state, dispatch }}>
+    <TimelinesContext.Provider value={{ timelinesState, timelinesDispatch }}>
       {children}
     </TimelinesContext.Provider>
   );

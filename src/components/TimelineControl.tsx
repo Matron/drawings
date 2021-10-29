@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
+import { GuiContext } from "../contexts/GuiContext";
 
 import Timeline from "../models/Timeline";
 import EventControl from "./EventControl";
@@ -21,6 +23,8 @@ const TimelineName = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 1;
+  position: relative;
 `;
 const TimelineEvents = styled.div`
   background-color: darkgray;
@@ -38,6 +42,8 @@ const TimelineToggle = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 1;
+  position: relative;
 `;
 
 interface TimelinesProps {
@@ -51,12 +57,17 @@ const TimelineControl = ({
 }: TimelinesProps) => {
   const { name, events, hidden } = timeline;
 
+  const { guiState } = useContext(GuiContext);
+  const { screenOffset } = guiState;
+
   return (
     <TimelineWrapper>
       <TimelineName>{name}</TimelineName>
       <TimelineEvents>
         {events &&
-          events.map((event) => <EventControl event={event} key={event.id} />)}
+          events.map((event) => (
+            <EventControl event={event} key={event.id} offset={screenOffset} />
+          ))}
       </TimelineEvents>
       <TimelineToggle onClick={() => handleToggleTimelineHidden(timeline.id)}>
         {hidden ? "Show" : "Hide"}

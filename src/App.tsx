@@ -1,8 +1,10 @@
 import { useContext, useEffect } from "react";
 import styled from "@emotion/styled";
 
+import Debugger from "./components/Debugger";
 import TimelinesContainer from "./components/TimelinesContainer";
 import { TimelinesContext } from "./contexts/TimelinesContext";
+import { GuiContext } from "./contexts/GuiContext";
 
 const Main = styled.div`
   background-color: #121212;
@@ -10,19 +12,25 @@ const Main = styled.div`
 `;
 
 function App() {
-  const { dispatch } = useContext(TimelinesContext);
+  const { timelinesDispatch } = useContext(TimelinesContext);
+  const { guiState } = useContext(GuiContext);
 
   useEffect(() => {
     fetch("http://localhost:3000/data.json")
       .then((resp) => resp.json())
       .then((data) => {
-        dispatch({ type: "SET_TIMELINES", payload: { timelines: data } });
+        timelinesDispatch({
+          type: "SET_TIMELINES",
+          payload: { timelines: data },
+        });
         console.log("got data: ", data);
       });
-  }, [dispatch]);
+  }, [timelinesDispatch]);
 
   return (
     <Main>
+      <Debugger text={"scale: " + guiState.screenScale} />
+      <Debugger text={"offset: " + guiState.screenOffset} />
       <TimelinesContainer />
     </Main>
   );

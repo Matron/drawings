@@ -7,7 +7,16 @@
   {
     "id": 2,
     "name": "Political Map",
-    "hidden": false
+    "hidden": false,
+    "events": [
+      {
+        "id": 6,
+        "name": "Romulus Augustulus déposé par Odoacre",
+        "startDate": { "year": 476 },
+        "endDate": { "year": 476 },
+        "children": []
+      }
+    ]
   },
   {
     "id": 3,
